@@ -38,5 +38,8 @@ fn main() {
         for (_, event) in glfw::flush_messages(&events) {
             println!("{:?}", event);
         }
+
+        // Swap front and back buffers
+        window.swap_buffers();
     }
 }
