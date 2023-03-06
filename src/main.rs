@@ -36,7 +36,7 @@ fn main() {
         glfw.poll_events();
 
         for (_, event) in glfw::flush_messages(&events) {
-            println!("{:?}", event);
+            println!("{event:?}");
         }
 
         // Swap front and back buffers
