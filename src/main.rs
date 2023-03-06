@@ -12,7 +12,7 @@ fn main() {
     let window_title = "Minecraft";
 
     // Create a windowed mode window and its OpenGL context
-    let (mut window, _) = glfw
+    let (mut window, events) = glfw
         .create_window(
             window_size.0,
             window_size.1,
@@ -30,7 +30,13 @@ fn main() {
     gl::load_with(|symbol| window.get_proc_address(symbol) as *const _);
     unsafe { glfwSwapInterval(0) };
 
+    // Loop until the user closes the window
     while !window.should_close() {
+        // Poll and process events
         glfw.poll_events();
+
+        for (_, event) in glfw::flush_messages(&events) {
+            println!("{:?}", event);
+        }
     }
 }
