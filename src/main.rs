@@ -1,3 +1,4 @@
+use glfw::ffi::glfwSwapInterval;
 use glfw::{Context, OpenGlProfileHint, WindowHint};
 
 fn main() {
@@ -25,6 +26,9 @@ fn main() {
     window.set_key_polling(true);
     window.set_cursor_pos_polling(true);
     window.set_raw_mouse_motion(true);
+
+    gl::load_with(|symbol| window.get_proc_address(symbol) as *const _);
+    unsafe { glfwSwapInterval(0) };
 
     while !window.should_close() {
         glfw.poll_events();
